@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "format": "npx prettier --write \"**/*.{ts,tsx,js,jsx,md,mdx,css,yaml,yml}\"",
+    "format": "npx prettier --write \"**/*.{ts,tsx,js,jsx,md,mdx,css,yaml,yml}\" --tab-width 4",
     "preview": "vite preview",
     "prepare": "husky"
   },
