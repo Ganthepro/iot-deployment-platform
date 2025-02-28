@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { BaseLayout } from "./layouts/BaseLayout";
 import HomePage from "./pages/HomePage";
 import DeploymentPage from "./pages/DeploymentPage";
-import ContainerPage from "./pages/ContainerPage";
+import ContainerPage from "./pages/ConfigurationPage";
 import { QueryClient, QueryClientProvider } from "react-query";
 
 const queryClient = new QueryClient();
@@ -19,7 +19,10 @@ export default function App() {
                             path="/deployment"
                             element={<DeploymentPage />}
                         />
-                        <Route path="/container" element={<ContainerPage />} />
+                        <Route
+                            path="/configuration"
+                            element={<ContainerPage />}
+                        />
                     </Route>
                 </Routes>
             </QueryClientProvider>

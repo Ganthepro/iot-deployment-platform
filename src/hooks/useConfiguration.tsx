@@ -24,10 +24,14 @@ export const useConfiguration = (configurationId?: string) => {
         configurationService.createConfiguration,
         {
             onSuccess: () => {
+                toast.success("Configuration created successfully");
                 refetch();
             },
             onError: (error: AxiosError) => {
                 console.error(error);
+                toast.error("Error creating configuration", {
+                    description: error.message,
+                });
                 throw new Error("Error creating configuration");
             },
         },
@@ -112,9 +116,7 @@ export const useConfiguration = (configurationId?: string) => {
                 } catch (error) {
                     if (error instanceof AxiosError) {
                         console.error(error);
-                        toast.error("Error fetching configuration", {
-                            description: error.message,
-                        });
+                        toast.error("Error fetching configuration");
                         throw new Error("Error fetching configuration");
                     }
                 }

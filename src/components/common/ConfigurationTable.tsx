@@ -6,13 +6,13 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
-import { DeploymentStatus } from "@/dtos/deployment/deployment-response.dto";
-import { useDeployment } from "@/hooks/UseDeployment";
+import { useConfiguration } from "@/hooks/UseConfiguration";
 import { useState } from "react";
 import ModuleCard from "./ModuleCard";
+import { ConfigurationStatus } from "@/dtos/configuration/configuration-response.dto";
 
-export default function DeploymentTable() {
-    const { deployments, isDeploymentsLoading } = useDeployment();
+export default function ConfigurationTable() {
+    const { configurations, isConfigurationsLoading } = useConfiguration();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedIds, setSelectedIds] = useState<{
         configurationId: string;
@@ -38,47 +38,35 @@ export default function DeploymentTable() {
             <Table>
                 <TableHeader>
                     <TableRow>
-                        <TableHead>Deployment Id</TableHead>
-                        <TableHead>Configuration Id</TableHead>
-                        <TableHead>Device ID</TableHead>
-                        <TableHead>Deploy At</TableHead>
+                        <TableHead>ID</TableHead>
+                        <TableHead>Configuration ID</TableHead>
                         <TableHead>Status</TableHead>
                         <TableHead className="text-right">Modules</TableHead>
                     </TableRow>
                 </TableHeader>
                 <TableBody className="text-start">
-                    {!isDeploymentsLoading ? (
-                        deployments.map((deployment) => {
-                            const date = new Date(deployment.createdAt);
-                            const createdAt = date.toLocaleString("en-US", {
-                                year: "numeric",
-                                month: "long",
-                                day: "numeric",
-                                hour: "2-digit",
-                                minute: "2-digit",
-                                second: "2-digit",
-                            });
+                    {!isConfigurationsLoading ? (
+                        configurations.map((configuration) => {
                             const statusStyle =
-                                deployment.status === DeploymentStatus.Success
+                                configuration.status ===
+                                ConfigurationStatus.Deployed
                                     ? "text-green-500"
                                     : "text-red-500";
                             return (
-                                <TableRow key={deployment.id}>
+                                <TableRow key={configuration.id}>
                                     <TableCell className="font-medium">
-                                        {deployment.id}
+                                        {configuration.id}
                                     </TableCell>
                                     <TableCell>
-                                        {deployment.configurationId}
+                                        {configuration.configurationId}
                                     </TableCell>
-                                    <TableCell>{deployment.deviceId}</TableCell>
-                                    <TableCell>{createdAt}</TableCell>
                                     <TableCell className={statusStyle}>
-                                        {deployment.status}
+                                        {configuration.status}
                                     </TableCell>
                                     <TableCell
                                         onClick={() =>
                                             handleModalOpen(
-                                                deployment.configurationId,
+                                                configuration.configurationId,
                                             )
                                         }
                                         className="text-right cursor-pointer text-blue-500 hover:underline"

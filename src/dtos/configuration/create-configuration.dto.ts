@@ -1,10 +1,18 @@
 export type CreateConfigurationDto = {
-    baseTemplatedeploymentId: string;
-    modules: Module[];
+    baseTemplateConfigurationId: string;
+    configurationId: string;
+    modules: ModuleDto[];
 };
 
-type Module = {
-    moduleId: string;
+export type ModuleDto = {
+    moduleId: Module;
     tag?: string;
-    status?: "running" | "stopped";
 };
+
+export enum Module {
+    RabbitMQ = "rabbitmq",
+    Postgres = "postgres",
+    DataLoggerAgent = "data-logger",
+    IQASensorAgent = "iaq-sensor",
+    API = "api",
+}
