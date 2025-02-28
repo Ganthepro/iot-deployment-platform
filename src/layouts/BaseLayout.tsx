@@ -8,10 +8,12 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
+import CreateDeploymentCard from "@/components/common/CreateDeploymentCard";
 
 export const BaseLayout = () => {
     const [showCreateDeploymentBtn, setShowCreateDeploymentBtn] =
         useState(false);
+    const [isCreateDeploymentOpen, setIsCreateDeploymentOpen] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -19,6 +21,10 @@ export const BaseLayout = () => {
 
     function handleSelectChange(value: string) {
         navigate(value);
+    }
+
+    function handleCreateDeployment() {
+        setIsCreateDeploymentOpen(true);
     }
 
     useEffect(() => {
@@ -43,7 +49,14 @@ export const BaseLayout = () => {
                     </SelectContent>
                 </Select>
                 {showCreateDeploymentBtn && (
-                    <Button variant="outline">Create Deployment</Button>
+                    <Button onClick={handleCreateDeployment} variant="outline">
+                        Create Deployment
+                    </Button>
+                )}
+                {isCreateDeploymentOpen && (
+                    <CreateDeploymentCard
+                        onClose={() => setIsCreateDeploymentOpen(false)}
+                    />
                 )}
             </div>
             <hr />

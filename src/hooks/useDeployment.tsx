@@ -21,10 +21,14 @@ export const useDeployment = (
 
     const createDeployment = useMutation(deploymentService.createDeployment, {
         onSuccess: () => {
+            toast.success("Deployment created successfully");
             refetch();
         },
         onError: (error: AxiosError) => {
             console.error(error);
+            toast.error("Error creating deployment", {
+                description: error.message,
+            });
             throw new Error("Error creating deployment");
         },
     });

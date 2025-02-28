@@ -1,4 +1,5 @@
 export type DeploymentResponseDto = {
+    id: string;
     deviceId: string;
     configurationId: string;
     status: DeploymentStatus;
@@ -6,7 +7,7 @@ export type DeploymentResponseDto = {
     createdAt: string;
 };
 
-enum DeploymentStatus {
+export enum DeploymentStatus {
     Success = "Success",
     Failure = "Failure",
 }

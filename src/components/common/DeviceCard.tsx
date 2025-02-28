@@ -36,10 +36,17 @@ export default function DeviceCard({
                     </CardDescription>
                 </CardHeader>
                 <CardContent>
-                    {!isDeploymentByDeviceLoading &&
-                        deployments.map((deployment) => {
-                            return <ModuleAccordion {...deployment} />;
-                        })}
+                    {!isDeploymentByDeviceLoading ? (
+                        deployments.length > 0 ? (
+                            deployments.map((deployment) => {
+                                return <ModuleAccordion {...deployment} />;
+                            })
+                        ) : (
+                            <p className="text-red-500">No modules</p>
+                        )
+                    ) : (
+                        <p>Loading...</p>
+                    )}
                 </CardContent>
             </Card>
         </Fragment>

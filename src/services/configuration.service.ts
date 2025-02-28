@@ -4,9 +4,9 @@ import { ConfigurationResponseDto } from "@/dtos/configuration/configuration-res
 import { ConfigurationModuleResponseDto } from "@/dtos/configuration/configuration-module-response.dto";
 
 export const configurationService = {
-    async getModules(id: string) {
+    async getModules(configurationId: string) {
         return await apiController<ConfigurationModuleResponseDto[]>(
-            `/configuration/${id}/modules`,
+            `/configuration/${configurationId}/modules`,
             "get",
         );
     },
@@ -18,9 +18,9 @@ export const configurationService = {
         );
     },
 
-    async getConfigurationById(id: string) {
+    async getConfigurationById(configurationId: string) {
         return await apiController<ConfigurationResponseDto>(
-            `/configuration/${id}`,
+            `/configuration/${configurationId}`,
             "get",
         );
     },

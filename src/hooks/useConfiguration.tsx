@@ -10,7 +10,7 @@ const CONFIGURATIONS_QUERY_KEY = "configurations";
 const CONFIGURATION_QUERY_KEY = "configuration";
 const MODULES_QUERY_KEY = "modulesById";
 
-export const useConfiguration = (id?: string) => {
+export const useConfiguration = (configurationId?: string) => {
     const [configurations, setConfigurations] = useState<
         ConfigurationResponseDto[]
     >([]);
@@ -40,23 +40,23 @@ export const useConfiguration = (id?: string) => {
     };
 
     const fetchConfiguration = async (
-        id: string,
+        configurationId: string,
     ): Promise<ConfigurationResponseDto> => {
-        return await configurationService.getConfigurationById(id);
+        return await configurationService.getConfigurationById(configurationId);
     };
 
     const fetchModules = async (
-        id: string,
+        configurationId: string,
     ): Promise<ConfigurationModuleResponseDto[]> => {
-        return await configurationService.getModules(id);
+        return await configurationService.getModules(configurationId);
     };
 
     const { isLoading: isModulesLoading, isError: isModulesError } = useQuery({
-        queryKey: [MODULES_QUERY_KEY, id],
+        queryKey: [MODULES_QUERY_KEY, configurationId],
         queryFn: async () => {
             try {
-                if (id) {
-                    const modules = await fetchModules(id!);
+                if (configurationId) {
+                    const modules = await fetchModules(configurationId!);
                     setModules(modules);
                     return modules;
                 }
@@ -99,11 +99,13 @@ export const useConfiguration = (id?: string) => {
 
     const { isLoading: isConfigurationLoading, isError: isConfigurationError } =
         useQuery({
-            queryKey: [CONFIGURATION_QUERY_KEY, id],
+            queryKey: [CONFIGURATION_QUERY_KEY, configurationId],
             queryFn: async () => {
                 try {
-                    if (id) {
-                        const configuration = await fetchConfiguration(id!);
+                    if (configurationId) {
+                        const configuration = await fetchConfiguration(
+                            configurationId!,
+                        );
                         setConfiguration(configuration);
                         return configuration;
                     }
