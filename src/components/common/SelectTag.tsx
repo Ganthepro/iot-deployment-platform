@@ -2,7 +2,9 @@ import { useContainer } from "@/hooks/UseContainer";
 import {
     Select,
     SelectContent,
+    SelectGroup,
     SelectItem,
+    SelectLabel,
     SelectTrigger,
     SelectValue,
 } from "../ui/select";
@@ -27,17 +29,22 @@ export default function SelectTag({
                 <SelectValue placeholder="Select a Tag" />
             </SelectTrigger>
             <SelectContent>
-                {isTagsLoading ? (
-                    <SelectItem value="loading">Loading...</SelectItem>
-                ) : isTagsError ? (
-                    <SelectItem value="error">Error fetching tags</SelectItem>
-                ) : (
-                    tags.map((tag) => (
-                        <SelectItem key={tag} value={tag}>
-                            {tag}
+                <SelectGroup>
+                    <SelectLabel>Tag</SelectLabel>
+                    {isTagsLoading ? (
+                        <SelectItem value="loading">Loading...</SelectItem>
+                    ) : isTagsError ? (
+                        <SelectItem value="error">
+                            Error fetching tags
                         </SelectItem>
-                    ))
-                )}
+                    ) : (
+                        tags.map((tag) => (
+                            <SelectItem key={tag} value={tag}>
+                                {tag}
+                            </SelectItem>
+                        ))
+                    )}
+                </SelectGroup>
             </SelectContent>
         </Select>
     );

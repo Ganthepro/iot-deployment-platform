@@ -5,9 +5,11 @@ import {
 import {
     Select,
     SelectContent,
+    SelectGroup,
     SelectItem,
     SelectTrigger,
     SelectValue,
+    SelectLabel,
 } from "../ui/select";
 import SelectTag from "./SelectTag";
 import { useState } from "react";
@@ -37,9 +39,7 @@ export default function SelectContainer({
         const filtered = Object.values(Module).filter(
             (m) => !selectedModules.includes(m),
         );
-        if (moduleId) {
-            filtered.push(moduleId);
-        }
+        if (moduleId) filtered.push(moduleId);
         return filtered;
     }
 
@@ -62,13 +62,16 @@ export default function SelectContainer({
                     <SelectValue placeholder="Select a Module" />
                 </SelectTrigger>
                 <SelectContent>
-                    {getRemainingModules().map((m) => {
-                        return (
-                            <SelectItem key={m} value={m}>
-                                {m}
-                            </SelectItem>
-                        );
-                    })}
+                    <SelectGroup>
+                        <SelectLabel>Module</SelectLabel>
+                        {getRemainingModules().map((m) => {
+                            return (
+                                <SelectItem key={m} value={m}>
+                                    {m}
+                                </SelectItem>
+                            );
+                        })}
+                    </SelectGroup>
                 </SelectContent>
             </Select>
             {moduleId &&
