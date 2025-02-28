@@ -38,7 +38,7 @@ export default function DeploymentTable() {
             <Table>
                 <TableHeader>
                     <TableRow>
-                        <TableHead>Deployment Id</TableHead>
+                        <TableHead>ID</TableHead>
                         <TableHead>Configuration Id</TableHead>
                         <TableHead>Device ID</TableHead>
                         <TableHead>Deploy At</TableHead>
