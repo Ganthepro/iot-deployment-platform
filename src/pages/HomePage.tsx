@@ -1,5 +1,5 @@
 import DeviceCard from "@/components/common/DeviceCard";
-import { useRegistry } from "@/hooks/UseRegistry";
+import { useRegistry } from "@/hooks/useRegistry";
 import { useEffect } from "react";
 import { toast } from "sonner";
 

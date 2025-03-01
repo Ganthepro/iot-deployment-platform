@@ -4,13 +4,14 @@ RUN npm i -g pnpm
 
 FROM base AS dependencies
 WORKDIR /app
-COPY package.json pnpm-lock.yaml ./
+COPY package.json pnpm-lock.yaml vite.config.ts ./
 RUN pnpm install --no-frozen-lockfile
 
 FROM base AS build
 WORKDIR /app
 COPY . .
 COPY --from=dependencies /app/node_modules ./node_modules
+COPY --from=dependencies /app/vite.config.ts ./vite.config.ts
 RUN pnpm run build
 
 FROM base AS deploy

@@ -6,7 +6,7 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card";
-import { useConfiguration } from "@/hooks/UseConfiguration";
+import { useConfiguration } from "@/hooks/useConfiguration";
 import { Badge } from "../ui/badge";
 import CardLayout from "@/layouts/CardLayout";
 import { Button } from "../ui/button";

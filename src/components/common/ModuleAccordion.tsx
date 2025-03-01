@@ -1,6 +1,6 @@
 import { Badge } from "../ui/badge";
 import { DeploymentResponseDto } from "@/dtos/deployment/deployment-response.dto";
-import { useConfiguration } from "@/hooks/UseConfiguration";
+import { useConfiguration } from "@/hooks/useConfiguration";
 
 export default function ModuleAccordion({
     configurationId,

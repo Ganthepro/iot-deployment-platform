@@ -17,7 +17,7 @@ import {
 } from "@/dtos/configuration/create-configuration.dto";
 import SelectContainer from "./SelectContainer";
 import { toast } from "sonner";
-import { useConfiguration } from "@/hooks/UseConfiguration";
+import { useConfiguration } from "@/hooks/useConfiguration";
 import { useFormik } from "formik";
 import {
     CreateConfigurationValidationSchema,

@@ -6,7 +6,7 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
-import { useConfiguration } from "@/hooks/UseConfiguration";
+import { useConfiguration } from "@/hooks/useConfiguration";
 import { useState } from "react";
 import ModuleCard from "./ModuleCard";
 import { ConfigurationStatus } from "@/dtos/configuration/configuration-response.dto";

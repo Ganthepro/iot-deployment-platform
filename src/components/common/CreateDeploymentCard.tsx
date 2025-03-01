@@ -16,8 +16,8 @@ import {
     SelectValue,
 } from "../ui/select";
 import { Label } from "../ui/label";
-import { useRegistry } from "@/hooks/UseRegistry";
-import { useConfiguration } from "@/hooks/UseConfiguration";
+import { useRegistry } from "@/hooks/useRegistry";
+import { useConfiguration } from "@/hooks/useConfiguration";
 import { useState } from "react";
 import ModuleAccordion from "./ModuleAccordion";
 import { useFormik } from "formik";
@@ -27,7 +27,7 @@ import {
     emptyCreateDeploymentValues,
 } from "@/formik/create-deployment.formik";
 import { toast } from "sonner";
-import { useDeployment } from "@/hooks/UseDeployment";
+import { useDeployment } from "@/hooks/useDeployment";
 
 interface CreateDeploymentCardProps {
     onClose: () => void;

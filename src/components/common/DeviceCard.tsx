@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { DeviceResponseDto } from "@/dtos/registry/device-response.dto";
-import { useDeployment } from "@/hooks/UseDeployment";
+import { useDeployment } from "@/hooks/useDeployment";
 import ModuleAccordion from "./ModuleAccordion";
 
 export default function DeviceCard({

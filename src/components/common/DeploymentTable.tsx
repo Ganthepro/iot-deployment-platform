@@ -7,7 +7,7 @@ import {
     TableRow,
 } from "@/components/ui/table";
 import { DeploymentStatus } from "@/dtos/deployment/deployment-response.dto";
-import { useDeployment } from "@/hooks/UseDeployment";
+import { useDeployment } from "@/hooks/useDeployment";
 import { useState } from "react";
 import ModuleCard from "./ModuleCard";
 
