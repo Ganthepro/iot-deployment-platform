@@ -4,8 +4,9 @@ import { useConfiguration } from "@/hooks/UseConfiguration";
 
 export default function ModuleAccordion({
     configurationId,
+    id,
 }: Partial<DeploymentResponseDto>) {
-    const { modules, isModulesLoading } = useConfiguration(configurationId);
+    const { modules, isModulesLoading } = useConfiguration(configurationId, id);
 
     return (
         <div className="flex flex-col divide-y-2">

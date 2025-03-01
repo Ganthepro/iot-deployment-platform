@@ -10,7 +10,10 @@ const CONFIGURATIONS_QUERY_KEY = "configurations";
 const CONFIGURATION_QUERY_KEY = "configuration";
 const MODULES_QUERY_KEY = "modulesById";
 
-export const useConfiguration = (configurationId?: string) => {
+export const useConfiguration = (
+    configurationId?: string,
+    deploymentId?: string,
+) => {
     const [configurations, setConfigurations] = useState<
         ConfigurationResponseDto[]
     >([]);
@@ -56,7 +59,7 @@ export const useConfiguration = (configurationId?: string) => {
     };
 
     const { isLoading: isModulesLoading, isError: isModulesError } = useQuery({
-        queryKey: [MODULES_QUERY_KEY, configurationId],
+        queryKey: [MODULES_QUERY_KEY, configurationId, deploymentId],
         queryFn: async () => {
             try {
                 if (configurationId) {
@@ -103,7 +106,7 @@ export const useConfiguration = (configurationId?: string) => {
 
     const { isLoading: isConfigurationLoading, isError: isConfigurationError } =
         useQuery({
-            queryKey: [CONFIGURATION_QUERY_KEY, configurationId],
+            queryKey: [...CONFIGURATION_QUERY_KEY, configurationId],
             queryFn: async () => {
                 try {
                     if (configurationId) {

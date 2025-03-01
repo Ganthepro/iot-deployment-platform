@@ -42,7 +42,7 @@ export default function DeviceCard({
                                 return <ModuleAccordion {...deployment} />;
                             })
                         ) : (
-                            <p className="text-red-500">No modules</p>
+                            <p className="text-red-500">No Deployment</p>
                         )
                     ) : (
                         <p>Loading...</p>
