@@ -41,7 +41,7 @@ export default function DeploymentTable() {
                         <TableHead>ID</TableHead>
                         <TableHead>Configuration Id</TableHead>
                         <TableHead>Device ID</TableHead>
-                        <TableHead>Deploy At</TableHead>
+                        <TableHead>Deployed At</TableHead>
                         <TableHead>Status</TableHead>
                         <TableHead className="text-right">Modules</TableHead>
                     </TableRow>
