@@ -4,6 +4,7 @@ import { DeploymentResponseDto } from "@/dtos/deployment/deployment-response.dto
 import { useState } from "react";
 import { toast } from "sonner";
 import { AxiosError } from "axios";
+import { ErrorDto } from "@/dtos/shared/error.dto";
 
 const DEPLOYMENTS_QUERY_KEY = "deployments";
 const DEPLOYMENT_QUERY_KEY = "deployment";
@@ -27,7 +28,8 @@ export const useDeployment = (
         onError: (error: AxiosError) => {
             console.error(error);
             toast.error("Error creating deployment", {
-                description: error.message,
+                description: (error as AxiosError<ErrorDto>).response?.data
+                    .message,
             });
             throw new Error("Error creating deployment");
         },
@@ -71,7 +73,7 @@ export const useDeployment = (
                 throw new Error("Error fetching deployments");
             }
         },
-        onError: (error: AxiosError) => {
+        onError: (error: AxiosError<ErrorDto>) => {
             console.error(error);
             toast.error("Error fetching deployments", {
                 description: error.message,
@@ -97,7 +99,8 @@ export const useDeployment = (
                 if (error instanceof AxiosError) {
                     console.error(error);
                     toast.error("Error fetching deployments", {
-                        description: error.message,
+                        description: (error as AxiosError<ErrorDto>).response
+                            ?.data.message,
                     });
                     throw new Error("Error fetching deployments");
                 }
@@ -119,7 +122,8 @@ export const useDeployment = (
                     if (error instanceof AxiosError) {
                         console.error(error);
                         toast.error("Error fetching deployment", {
-                            description: error.message,
+                            description: (error as AxiosError<ErrorDto>)
+                                .response?.data.message,
                         });
                         throw new Error("Error fetching deployment");
                     }

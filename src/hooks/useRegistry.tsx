@@ -2,6 +2,7 @@ import { useQuery } from "react-query";
 import { registryService } from "@/services/registry.service";
 import { DeviceResponseDto } from "@/dtos/registry/device-response.dto";
 import { useState } from "react";
+import { toast } from "sonner";
 
 const DEVICE_QUERY_KEY = "device";
 const CONNECTION_QUERY_KEY = "connection";
@@ -27,6 +28,7 @@ export const useRegistry = () => {
                 return devices;
             } catch (error) {
                 console.error(error);
+                toast.error("Error fetching devices");
                 throw new Error("Error fetching devices");
             }
         },

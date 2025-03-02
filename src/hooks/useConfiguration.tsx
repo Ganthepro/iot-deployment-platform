@@ -5,6 +5,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { AxiosError } from "axios";
 import { ConfigurationModuleResponseDto } from "@/dtos/configuration/configuration-module-response.dto";
+import { ErrorDto } from "@/dtos/shared/error.dto";
 
 const CONFIGURATIONS_QUERY_KEY = "configurations";
 const CONFIGURATION_QUERY_KEY = "configuration";
@@ -30,10 +31,10 @@ export const useConfiguration = (
                 toast.success("Configuration created successfully");
                 refetch();
             },
-            onError: (error: AxiosError) => {
+            onError: (error: AxiosError<ErrorDto>) => {
                 console.error(error);
                 toast.error("Error creating configuration", {
-                    description: error.message,
+                    description: error.response?.data.message,
                 });
                 throw new Error("Error creating configuration");
             },
@@ -72,7 +73,7 @@ export const useConfiguration = (
                 throw new Error("Error fetching configurations");
             }
         },
-        onError: (error: AxiosError) => {
+        onError: (error: AxiosError<ErrorDto>) => {
             console.error(error);
             toast.error("Error fetching configurations", {
                 description: error.message,
@@ -96,7 +97,8 @@ export const useConfiguration = (
                 if (error instanceof AxiosError) {
                     console.error(error);
                     toast.error("Error fetching configurations", {
-                        description: error.message,
+                        description: (error as AxiosError<ErrorDto>).response
+                            ?.data.message,
                     });
                     throw new Error("Error fetching configurations");
                 }
@@ -119,7 +121,10 @@ export const useConfiguration = (
                 } catch (error) {
                     if (error instanceof AxiosError) {
                         console.error(error);
-                        toast.error("Error fetching configuration");
+                        toast.error("Error fetching configuration", {
+                            description: (error as AxiosError<ErrorDto>)
+                                .response?.data.message,
+                        });
                         throw new Error("Error fetching configuration");
                     }
                 }

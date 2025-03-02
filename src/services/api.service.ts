@@ -1,3 +1,4 @@
+import { ErrorDto } from "@/dtos/shared/error.dto";
 import axios, { AxiosError, AxiosInstance, AxiosResponse } from "axios";
 
 const baseURL = import.meta.env.VITE_PUBLIC_ENV || "";
@@ -8,7 +9,7 @@ const responseInterceptor = (response: AxiosResponse) => {
     return response;
 };
 
-const errorInterceptor = async (error: AxiosError) => {
+const errorInterceptor = async (error: AxiosError<ErrorDto>) => {
     return Promise.reject(error);
 };
 
