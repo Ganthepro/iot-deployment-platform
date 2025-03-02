@@ -85,7 +85,11 @@ export default function SelectContainer({
                         handleTag={handleTag}
                     />
                 )}
-            <Button variant="outline" onClick={() => handleRemoveModule(index)}>
+            <Button
+                type="button"
+                variant="outline"
+                onClick={() => handleRemoveModule(index)}
+            >
                 Remove
             </Button>
         </div>
