@@ -5,11 +5,14 @@ export type CreateDeploymentValues = CreateDeploymentDto;
 
 export const emptyCreateDeploymentValues: CreateDeploymentValues = {
     configurationId: "",
-    deviceId: "",
+    deviceId: [],
 };
 
 export const CreateDeploymentValidationSchema =
     yup.object<CreateDeploymentValues>({
         configurationId: yup.string().required("configuration id is required"),
-        deviceId: yup.string().required("device id is required"),
+        deviceId: yup
+            .array()
+            .required("device id is required")
+            .of(yup.string().required("device id is required")),
     });

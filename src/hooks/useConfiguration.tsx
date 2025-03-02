@@ -14,6 +14,7 @@ const MODULES_QUERY_KEY = "modulesById";
 export const useConfiguration = (
     configurationId?: string,
     deploymentId?: string,
+    deviceId?: string,
 ) => {
     const [configurations, setConfigurations] = useState<
         ConfigurationResponseDto[]
@@ -60,7 +61,7 @@ export const useConfiguration = (
     };
 
     const { isLoading: isModulesLoading, isError: isModulesError } = useQuery({
-        queryKey: [MODULES_QUERY_KEY, configurationId, deploymentId],
+        queryKey: [MODULES_QUERY_KEY, configurationId, deploymentId, deviceId],
         queryFn: async () => {
             try {
                 if (configurationId) {

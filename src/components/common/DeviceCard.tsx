@@ -39,7 +39,15 @@ export default function DeviceCard({
                     {!isDeploymentByDeviceLoading ? (
                         deployments.length > 0 ? (
                             deployments.map((deployment) => {
-                                return <ModuleAccordion {...deployment} />;
+                                return (
+                                    <ModuleAccordion
+                                        deviceId={deviceId}
+                                        configurationId={
+                                            deployment.configurationId
+                                        }
+                                        id={deployment.id}
+                                    />
+                                );
                             })
                         ) : (
                             <p className="text-red-500">No Deployment</p>

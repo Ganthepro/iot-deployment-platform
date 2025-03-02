@@ -1,4 +1,4 @@
 export type CreateDeploymentDto = {
-    deviceId: string;
+    deviceId: string[];
     configurationId: string;
 };

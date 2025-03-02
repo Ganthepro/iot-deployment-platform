@@ -1,12 +1,22 @@
 import { Badge } from "../ui/badge";
-import { DeploymentResponseDto } from "@/dtos/deployment/deployment-response.dto";
 import { useConfiguration } from "@/hooks/useConfiguration";
+
+interface ModuleAccordionProps {
+    configurationId: string;
+    id: string;
+    deviceId: string;
+}
 
 export default function ModuleAccordion({
     configurationId,
     id,
-}: Partial<DeploymentResponseDto>) {
-    const { modules, isModulesLoading } = useConfiguration(configurationId, id);
+    deviceId,
+}: Partial<ModuleAccordionProps>) {
+    const { modules, isModulesLoading } = useConfiguration(
+        configurationId,
+        id,
+        deviceId,
+    );
 
     return (
         <div className="flex flex-col divide-y-2">

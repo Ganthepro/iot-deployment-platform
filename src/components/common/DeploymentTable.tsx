@@ -62,6 +62,7 @@ export default function DeploymentTable() {
                                 deployment.status === DeploymentStatus.Success
                                     ? "text-green-500"
                                     : "text-red-500";
+                            const deviceId = deployment.deviceId.join(", ");
                             return (
                                 <TableRow key={deployment.id}>
                                     <TableCell className="font-medium">
@@ -70,7 +71,7 @@ export default function DeploymentTable() {
                                     <TableCell>
                                         {deployment.configurationId}
                                     </TableCell>
-                                    <TableCell>{deployment.deviceId}</TableCell>
+                                    <TableCell>{deviceId}</TableCell>
                                     <TableCell>{createdAt}</TableCell>
                                     <TableCell className={statusStyle}>
                                         {deployment.status}

@@ -87,7 +87,7 @@ export default function SelectContainer({
                 )}
             <Button
                 type="button"
-                variant="outline"
+                variant="destructive"
                 onClick={() => handleRemoveModule(index)}
             >
                 Remove

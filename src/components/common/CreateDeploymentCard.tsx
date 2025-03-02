@@ -28,6 +28,7 @@ import {
 } from "@/formik/create-deployment.formik";
 import { toast } from "sonner";
 import { useDeployment } from "@/hooks/useDeployment";
+import SelectDeviceId from "./SelectDeviceId";
 
 interface CreateDeploymentCardProps {
     onClose: () => void;
@@ -43,6 +44,7 @@ export default function CreateDeploymentCard({
     const [selectedConfiguration, setSelectedConfiguration] = useState<
         string | null
     >(null);
+    const [deviceIds, setDeviceIds] = useState<(string | null)[]>([]);
 
     function handleSelectConfiguration(configurationId: string) {
         setShowAccordion(true);
@@ -81,6 +83,28 @@ export default function CreateDeploymentCard({
         validationSchema: CreateDeploymentValidationSchema,
         onSubmit: handleSubmit,
     });
+
+    function handleAddDeviceId() {
+        if (deviceIds.length === devices.length) {
+            toast.error("Cannot add more than the number of devices");
+            return;
+        }
+        setDeviceIds([...deviceIds, null]);
+    }
+
+    function handleDeviceIdChange(index: number, deviceId: string) {
+        const newDeviceIds = [...deviceIds];
+        newDeviceIds[index] = deviceId;
+        setDeviceIds(newDeviceIds);
+        createDeploymentFormik.setFieldValue("deviceId", newDeviceIds);
+    }
+
+    function handleRemoveDeviceId(index: number) {
+        const newDeviceIds = [...deviceIds];
+        newDeviceIds.splice(index, 1);
+        setDeviceIds(newDeviceIds);
+        createDeploymentFormik.setFieldValue("deviceId", newDeviceIds);
+    }
 
     return (
         <CardLayout>
@@ -129,38 +153,44 @@ export default function CreateDeploymentCard({
                             )}
                             <div className="flex flex-col gap-2">
                                 <Label className="self-start">Device</Label>
-                                <Select
-                                    onValueChange={(value) =>
-                                        createDeploymentFormik.setFieldValue(
-                                            "deviceId",
-                                            value,
-                                        )
-                                    }
-                                >
-                                    <SelectTrigger>
-                                        <SelectValue placeholder="Select a Device" />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        {!isDevicesLoading &&
-                                            devices.map((device) => {
-                                                return (
-                                                    <SelectItem
-                                                        key={device.deviceId}
-                                                        value={device.deviceId}
-                                                    >
-                                                        {device.deviceId}
-                                                    </SelectItem>
-                                                );
-                                            })}
-                                    </SelectContent>
-                                </Select>
+                                {deviceIds.map((_, index) => (
+                                    <div className="flex gap-2" key={index}>
+                                        <SelectDeviceId
+                                            key={index}
+                                            devices={devices}
+                                            isDevicesLoading={isDevicesLoading}
+                                            deviceIds={deviceIds}
+                                            index={index}
+                                            handleDeviceIdChange={
+                                                handleDeviceIdChange
+                                            }
+                                        />
+                                        <Button
+                                            type="button"
+                                            variant="destructive"
+                                            onClick={() =>
+                                                handleRemoveDeviceId(index)
+                                            }
+                                        >
+                                            Remove
+                                        </Button>
+                                    </div>
+                                ))}
                             </div>
+                            <Button
+                                variant="outline"
+                                type="button"
+                                onClick={handleAddDeviceId}
+                            >
+                                + Add Device
+                            </Button>
                         </div>
                     </CardContent>
                     <CardFooter className="flex justify-between">
                         <Button
                             type="submit"
                             onClick={() => {
+                                console.log(createDeploymentFormik.errors);
                                 !createDeploymentFormik.isValid &&
                                     toast.error("Please fill in all fields");
                             }}
