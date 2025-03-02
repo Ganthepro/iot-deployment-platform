@@ -156,6 +156,7 @@ export default function CreateConfigurationCard({
                             {modules.length < 5 && (
                                 <Button
                                     variant="outline"
+                                    type="button"
                                     onClick={handleAddModule}
                                 >
                                     + Add Module

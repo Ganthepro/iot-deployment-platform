@@ -165,7 +165,7 @@ export default function CreateDeploymentCard({
                                     toast.error("Please fill in all fields");
                             }}
                         >
-                            Create
+                            Deploy
                         </Button>
                         <Button
                             type="button"
