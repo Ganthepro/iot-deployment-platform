@@ -5,6 +5,6 @@ export type ConfigurationResponseDto = {
 };
 
 export enum ConfigurationStatus {
-    NeverDeployed = "Never Deployed",
+    Undeployed = "Undeployed",
     Deployed = "Deployed",
 }
