@@ -43,6 +43,7 @@ export default function DeploymentTable() {
                         <TableHead>Device ID</TableHead>
                         <TableHead>Deployed At</TableHead>
                         <TableHead>Status</TableHead>
+                        <TableHead>Log Message</TableHead>
                         <TableHead className="text-right">Modules</TableHead>
                     </TableRow>
                 </TableHeader>
@@ -75,6 +76,9 @@ export default function DeploymentTable() {
                                     <TableCell>{createdAt}</TableCell>
                                     <TableCell className={statusStyle}>
                                         {deployment.status}
+                                    </TableCell>
+                                    <TableCell>
+                                        {deployment.message || "-"}
                                     </TableCell>
                                     <TableCell
                                         onClick={() =>
