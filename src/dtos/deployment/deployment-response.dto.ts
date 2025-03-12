@@ -5,6 +5,7 @@ export type DeploymentResponseDto = {
     status: DeploymentStatus;
     isLatest: boolean;
     createdAt: string;
+    message?: string;
 };
 
 export enum DeploymentStatus {
